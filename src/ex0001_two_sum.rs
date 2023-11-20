@@ -22,19 +22,14 @@ pub fn two_sum_time_efficient(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut h: HashMap<i32, usize> = HashMap::new();
 
     for (index, num) in nums.iter().enumerate() {
-        h.insert(target - num, index);
-    }
-
-    for (index, num) in nums.iter().enumerate() {
         if let Some(x) = h.get(num) {
-            if *x == index {
-                continue;
-            }
             v.push(index.try_into().unwrap());
             v.push((*x).try_into().unwrap());
 
             return v;
         }
+
+        h.insert(target - num, index);
     }
 
     v
